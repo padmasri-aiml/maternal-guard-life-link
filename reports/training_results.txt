@@ -1,0 +1,90 @@
+Loading dataset...
+Dataset Shape: (1014, 7)
+Columns: ['Age', 'SystolicBP', 'DiastolicBP', 'BS', 'BodyTemp', 'HeartRate', 'RiskLevel']
+Outliers handled using IQR clipping.
+
+===== Stratified Cross Validation =====
+
+Model: RandomForest
+Fold 1 F1: 0.8755
+Fold 2 F1: 0.8503
+Fold 3 F1: 0.8453
+Fold 4 F1: 0.8449
+Fold 5 F1: 0.8894
+Mean F1 Score: 0.8611
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.91      0.91       272
+           1       0.89      0.83      0.86       406
+           2       0.78      0.84      0.81       336
+
+    accuracy                           0.86      1014
+   macro avg       0.86      0.86      0.86      1014
+weighted avg       0.86      0.86      0.86      1014
+
+
+Model: SVM
+Fold 1 F1: 0.7041
+Fold 2 F1: 0.7032
+Fold 3 F1: 0.6290
+Fold 4 F1: 0.7449
+Fold 5 F1: 0.6578
+Mean F1 Score: 0.6878
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.83      0.83      0.83       272
+           1       0.65      0.86      0.74       406
+           2       0.64      0.40      0.49       336
+
+    accuracy                           0.70      1014
+   macro avg       0.71      0.70      0.69      1014
+weighted avg       0.70      0.70      0.68      1014
+
+
+Model: XGBoost
+Fold 1 F1: 0.8312
+Fold 2 F1: 0.7962
+Fold 3 F1: 0.7916
+Fold 4 F1: 0.7924
+Fold 5 F1: 0.8174
+Mean F1 Score: 0.8058
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.86      0.88       272
+           1       0.80      0.84      0.82       406
+           2       0.73      0.71      0.72       336
+
+    accuracy                           0.80      1014
+   macro avg       0.81      0.80      0.81      1014
+weighted avg       0.80      0.80      0.80      1014
+
+
+✅ BEST MODEL: RandomForest
+
+Retraining best model on FULL dataset...
+
+Feature Importance:
+       Feature  Importance
+3           BS    0.364376
+1   SystolicBP    0.182025
+0          Age    0.162136
+2  DiastolicBP    0.122998
+5    HeartRate    0.104844
+4     BodyTemp    0.063621
+
+================ FINAL MODEL SUMMARY ================
+Selected Model : RandomForest
+Macro F1 Score : 0.8611
+
+Model Selection Justification:
+- Stratified Cross Validation used to address class imbalance.
+- Macro F1-score ensures balanced evaluation.
+- Final model retrained on full dataset for stability.
+
+=====================================================
