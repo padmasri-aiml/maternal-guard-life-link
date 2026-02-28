@@ -59,6 +59,9 @@ Body Temperature
 
 Heart Rate
 
+Blood Group
+
+
 Models Evaluated:
 
 Random Forest
@@ -180,7 +183,7 @@ Sensitive data masked in the interface.
 
 Consent Management
 
-Implemented via admin donor console allowing donors to mark themselves unavailable without deleting profiles.
+Implemented via admin donor console allowing to mark unavailable without deleting profiles.
 
 Run:
 python admin_donor_manager.py
@@ -305,3 +308,4 @@ Hospital system integration APIs
 
 Padmasri
 AI & Machine Learning — Datathon Submission
+
