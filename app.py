@@ -1,6 +1,6 @@
 # ==========================================================
 # Maternal-Guard & Life-Link
-# Main Application (FINAL VERSION)
+# Main Application (User Interface Version)
 # ==========================================================
 
 import streamlit as st
@@ -81,7 +81,7 @@ if predict_btn:
     st.session_state.importance = importance
     st.session_state.main_factor = main_factor
 
-    # reset emergency flow
+    # reset emergency state
     st.session_state.alert_triggered = False
     st.session_state.donors = None
 
@@ -155,14 +155,13 @@ if (
 
             donors = match_donors(
                 blood_group,
-                16.5062,   # Vijayawada reference
+                16.5062,   # Vijayawada reference location
                 80.6480
             )
 
             st.session_state.donors = donors
             st.session_state.alert_triggered = True
 
-    # Show donor results
     if st.session_state.donors is not None:
 
         donors = st.session_state.donors.copy()
@@ -172,32 +171,13 @@ if (
         else:
             st.success("Compatible donors identified.")
 
-            # 🔐 MASK MEDICAL DATA
+            # 🔒 Mask encrypted medical info
             donors["chronic_conditions"] = donors[
                 "chronic_conditions"
             ].apply(mask_medical_data)
 
             st.caption(
-                "🔒 Donor medical information is encrypted "
-                "and hidden for privacy protection."
+                "🔒 Donor medical information is protected."
             )
 
             st.dataframe(donors, use_container_width=True)
-
-
-# ==========================================================
-# ETHICAL AI & CONSENT VISIBILITY
-# ==========================================================
-st.markdown("---")
-st.header("🔐 Ethical AI & Consent Compliance")
-
-st.success(
-"""
-✔ Donor Consent Management implemented via **admin_donor_manager.py**
-
-✔ Bias Mitigation validated using **bias_check.py**
-(age-group fairness evaluation)
-
-✔ Donor medical histories are encrypted and privacy-masked.
-"""
-)
